@@ -1,17 +1,16 @@
+# frozen_string_literal: true
+
 class BoggleService
 
-  def startGame()
-
+  def startGame
     p 'Boggle Game Starting'
-    characters = Array['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     create4By4Matrix
   end
 
-  def create4By4Matrix()
-
-    column = Array.new
+  def create4By4Matrix
+    column = []
     4.times do
-      row = Array.new
+      row = []
       4.times do
         row.push(getRandomLetter)
       end
@@ -27,10 +26,9 @@ class BoggleService
     bg.createNeghbouringMap(column)
   end
 
-    def getRandomLetter()
-    (65 + rand(0..25)).chr
+  def getRandomLetter
+    rand(65..90).chr
   end
-
 
   def saveWord(params)
     word = params.word
@@ -39,7 +37,9 @@ class BoggleService
 
   def validateWord(word)
     bg = Boggle::Boggle.getInstance
-    bg.validateWord(word)
+    if bg.validateAgainstDictionary(word) && bg.validateAgainstNeighbourhoodLetters(word)
+      bg.keepScore(word)
+    end
   end
 
   def setNeighbourhoodHash=(value)
@@ -47,4 +47,21 @@ class BoggleService
     bg.setNeighbourhoodHash = value
     puts bg.getNeighbourhoodHash
   end
+
+  def getFinalResult
+    validWords = getValidWords
+    score = getScore
+    ['validWords' => validWords, 'score' => score]
+  end
+
+  def getValidWords
+    bg = Boggle::Boggle.getInstance
+    bg.getValidWords
+  end
+
+  def getScore
+    bg = Boggle::Boggle.getInstance
+    bg.getScore
+  end
+
 end
