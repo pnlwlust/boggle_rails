@@ -31,15 +31,28 @@ class BoggleService
   end
 
   def saveWord(params)
-    word = params.word
-    validateWord(word)
+    word = params['word']
+    puts word
+    return validateWord(word)
   end
 
   def validateWord(word)
     bg = Boggle::Boggle.getInstance
-    if bg.validateAgainstDictionary(word) && bg.validateAgainstNeighbourhoodLetters(word)
+    if validateAgainstDictionary(word) && validateAgainstNeighbourhoodLetters(word)
       bg.keepScore(word)
+      return true
     end
+    return false
+  end
+
+  def validateAgainstNeighbourhoodLetters(word)
+    bg = Boggle::Boggle.getInstance
+    bg.validateAgainstNeighbourhoodLetters(word)
+  end
+
+  def validateAgainstDictionary(word)
+    bg = Boggle::Boggle.getInstance
+    bg.validateAgainstDictionary(word)
   end
 
   def setNeighbourhoodHash=(value)
@@ -51,7 +64,7 @@ class BoggleService
   def getFinalResult
     validWords = getValidWords
     score = getScore
-    ['validWords' => validWords, 'score' => score]
+    { validWords: validWords, score: score }
   end
 
   def getValidWords

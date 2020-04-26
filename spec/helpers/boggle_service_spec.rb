@@ -99,10 +99,10 @@ describe BoggleService do
       @boogleService.createNeighbouringMap(boggleMatrix)
     end
     it "should return true if the word is constructed from neighbouring letters" do
-      testList = ["KUST", "UCKU", "LUCK", "DOGS", "gody", "ULKSDORMLRLU"]
+      testList = ["LUCK", "KUST", "UCKU", "DOGS", "gody", "ULKSDORMLRLU"]
       bg = BoggleService.new
       testList.each { |x|
-        response = bg.validateWord(x)
+        response = bg.validateAgainstNeighbourhoodLetters(x)
         puts response
         expect(response).to be_truthy
       }
@@ -114,6 +114,15 @@ describe BoggleService do
         response = bg.validateWord(x)
         puts response
         expect(response).to be_falsey
+      }
+    end
+    it "should return true if the word is validate agianst dictionary as well as neighbourhood letters" do
+      testList = ["DOGS", "LUCK", "DORM"]
+      bg = BoggleService.new
+      testList.each { |x|
+        response = bg.validateWord(x)
+        puts response
+        expect(response).to be_truthy
       }
     end
   end

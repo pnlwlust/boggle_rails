@@ -32,6 +32,7 @@ module Boggle
 =end
 
     def createNeghbouringMap(column)
+      resetOldData() #reseting old neighbourhood hash data
       totalLength = column.length
       (0..totalLength - 1).each do |i|
         (0..totalLength - 1).each do |j|
@@ -41,6 +42,10 @@ module Boggle
       end
 
       @neighboursHash
+    end
+
+    def resetOldData()
+      @neighboursHash = {}
     end
 
     def addNeighbouringElements(currentElement, neighbouringElements)
@@ -88,7 +93,9 @@ module Boggle
       true
     end
 
-    def validateAgainstDictionary(word); end
+    def validateAgainstDictionary(word)
+      DictionaryApi.validateWord(word)
+    end
 
     def keepScore(word)
       length = word.length
