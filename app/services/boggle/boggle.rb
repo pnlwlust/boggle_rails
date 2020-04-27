@@ -76,43 +76,45 @@ module Boggle
     end
 
     def validateAgainstNeighbourhoodLetters(word)
-      puts word
+      puts "Validating against neighbourhood letters: "
       wordLength = word.length
-      return false if wordLength < 3
+      return false if wordLength < 3 # Mininum 3 letters word required
 
+      p "Chr : Neighbouring Letters"
       (0..wordLength - 1).each do |i|
         next if i == wordLength - 1
 
         ch = word[i].upcase
         neighbouringElements = @neighboursHash[ch]
-        puts format('%d %s : %s', i, ch, neighbouringElements)
+        puts format(' %d %s : %s', i, ch, neighbouringElements)
         secondWord = word[i + 1]
         return false if !neighbouringElements || !secondWord
         return false unless neighbouringElements.include?(secondWord.upcase)
       end
+      puts "Valid"
       true
     end
 
     def validateAgainstDictionary(word)
-      DictionaryApi.validateWord(word)
+      DictionaryApi.validateWord(word) # Calls expernal Api
     end
 
     def keepScore(word)
       length = word.length
-      @validWords.add(word) # Adding words to validWords Set
+      @validWords.add(word) # Keeping record of valid words
       case length
       when 0..2
         @score += 0
       when 3, 4
-        @score += 1
+        @score += 1 # 3-4 letters word scores 1
       when 5
-        @score += 2
+        @score += 2 # 5 letters word scores 2
       when 6
-        @score += 3
+        @score += 3 # 6 letters word scores 3
       when 7
-        @score += 5
+        @score += 5 # 7 letters word scores 5
       else
-        @score += 11
+        @score += 11 # >8 letters word scores 11
       end
 
       @score

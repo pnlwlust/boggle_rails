@@ -15,18 +15,22 @@ class BoggleController < ApplicationController
     render json: matrix
   end
 
-  def saveWord
+  def saveWord # Call if you need to validate on each word input
     params = request.body.read
     json = JSON.parse(params)
     boggleService = BoggleService.new
 
-    result = boggleService.saveWord(json)
+    result = boggleService.saveWord(json['word'])
     render json: { validated: result }
   end
 
   def getScore
-    boggleService = BoggleService.new
 
+    params = request.body.read
+    json = JSON.parse(params)
+
+    boggleService = BoggleService.new
+    boggleService.saveWords(json)
     result = boggleService.getFinalResult
     puts "##################################Final Score is##############################"
     puts result

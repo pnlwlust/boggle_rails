@@ -30,8 +30,17 @@ class BoggleService
     rand(65..90).chr
   end
 
-  def saveWord(params)
-    word = params['word']
+  def saveWords(params)
+    wordList = params['words']
+
+    wordList.each do |word|
+      puts "New Word: ", word
+      saveWord(word)
+    end
+  end
+
+  def saveWord(word)
+    # word = params['word']
     puts word
     return validateWord(word)
   end
@@ -39,7 +48,8 @@ class BoggleService
   def validateWord(word)
     bg = Boggle::Boggle.getInstance
     if validateAgainstDictionary(word) && validateAgainstNeighbourhoodLetters(word)
-      bg.keepScore(word)
+      puts "Keeping Score"
+      puts bg.keepScore(word) #keep score if validated
       return true
     end
     return false

@@ -20,7 +20,7 @@ export default () => (
             <BrowserRouter>
                 <Link
                     to="/start"
-                    className="btn outline-warning"
+                    className="outline-warning"
                     role="button"
                 >
                     Start Game

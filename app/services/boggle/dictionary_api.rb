@@ -10,9 +10,8 @@ module Boggle::DictionaryApi
     def self.validateWord(searchWord)
 
       word = searchWord.downcase
-      puts "calling api to validate word: ", word
+      puts "calling dictionary api to validate word: ", word
       url = 'https://od-api.oxforddictionaries.com:443/api/v2/lemmas/en/' + word #Callinf oxford dicitonary api
-      response = nil
       uri = URI(url)
       use_ssl = true
       http = Net::HTTP.new(uri.host, uri.port)
@@ -26,8 +25,10 @@ module Boggle::DictionaryApi
         resp = response.body
         puts response.code
         if response.code == '200' && response.message == 'OK'
+          puts "Valid"
           return true
         end
+        puts "Not Valid"
         return false
       end
     end
