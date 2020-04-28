@@ -11,7 +11,7 @@
 
 ### Running app
 
-#####Install all dependencies
+##### Install all dependencies
 Clone the project
 `git clone  https://github.com/pnlwlust/boggle_rails.git`
 
@@ -31,11 +31,11 @@ rails server
 App should be running on **localhost:3000** (or check the console for address)
 
 
-####Game Page Ux
+#### Game Page Ux
 ![Game Page](/public/boggle_game_page.png)
 
 
-###Game Rules
+### Game Rules
 
 *Search for words that can be constructed from the letters of sequentially adjacent cubes,
 where "adjacent" cubes are those horizontally, vertically, and diagonally neighboring.
