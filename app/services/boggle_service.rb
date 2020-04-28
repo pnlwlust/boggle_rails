@@ -33,10 +33,19 @@ class BoggleService
   def saveWords(params)
     wordList = params['words']
 
+    resetOldScore()
+
     wordList.each do |word|
       puts "New Word: ", word
       saveWord(word)
     end
+  end
+
+  def resetOldScore()
+
+    bg = Boggle::Boggle.getInstance
+    bg.resetOldScore()
+
   end
 
   def saveWord(word)

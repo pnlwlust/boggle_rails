@@ -45,7 +45,7 @@ After three minutes have elapsed, timer will stop and you will get you final res
 
 **Score**
 
-Length | Score
+Length | Points
 ------- | -------
 <3      |  0
 3,4      | 1

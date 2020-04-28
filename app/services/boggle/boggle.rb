@@ -44,6 +44,11 @@ module Boggle
       @neighboursHash
     end
 
+    def resetOldScore()
+      @score = 0
+      @validWords = Set.new
+    end
+
     def resetOldData()
       @neighboursHash = {}
     end

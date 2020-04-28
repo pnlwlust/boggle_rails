@@ -26,6 +26,7 @@ class StartGame extends React.Component {
             callingFinalScore:false
         };
 
+        this.oldState = this.state;
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -62,7 +63,9 @@ class StartGame extends React.Component {
     };
 
     resetMatrix = (props) =>{
-        this.setState({guessWord:'', matrixList:[], gameStarted: false, countdown:"0 : 0", finalScore:0, validWords:[], guessWordList:[]});
+        // this.setState({guessWord:'', matrixList:[], gameStarted: false, countdown:"0 : 0", finalScore:0, validWords:[], guessWordList:[]});
+        this.setState(this.oldState);
+        this.setState({guessWordList:[]});
             resetTimer();
         this.fetchMatrixData()
     };
@@ -203,6 +206,7 @@ class StartGame extends React.Component {
                                         disabled={!this.state.gameStarted}
                                         onChange={this.onChange}
                                         value={this.state.guessWord}
+                                        autoFocus
                                     />
                                     <small id="guessWordHelp" className="form-text text-muted">
                                         Enter single word at a time
