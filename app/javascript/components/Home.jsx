@@ -41,14 +41,14 @@ export default () => (
                         </Row>
                     </Accordion.Collapse>
                 </Accordion>
-                <hr className="my-4 border-warning" />
+                <hr className="border-warning" />
                 <BrowserRouter>
                     <Link
                         to="/start"
                         className="outline-warning"
                         role="button"
                     >
-                        Start Game
+                        Go to Game
                     </Link>
                     <Switch>
                         <Route path="/start">

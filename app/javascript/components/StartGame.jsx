@@ -58,8 +58,8 @@ class StartGame extends React.Component {
     }
 
     startGame = () => {
-        this.setState({gameStarted : true, doAfterTimeoutDone:true});
         this.resetMatrix();
+        this.setState({gameStarted : true, doAfterTimeoutDone:true});
         this.initTimer();
     };
 
@@ -153,19 +153,19 @@ class StartGame extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container className="my-4">
                 <Row>
                     <Col className="left-side">
 
-                        <h4 className="text-error">
-                            Click Start to start the counter
-                        </h4>
 
                         <Row>
                             <Col>
                                 <Button type="button" variant="outline-warning" onClick={this.startGame} block>
                                     Start Game
                                 </Button>
+                                <h6 className="justify-content-xs-end">
+                                    <small className="text-muted"> (clicking on start button will reset the matrix)</small>
+                                </h6>
                             </Col>
                         </Row>
                         <br/>
@@ -227,6 +227,7 @@ class StartGame extends React.Component {
                         }
                     </Col>
                 </Row>
+                <hr className="border-warning" />
             </Container>
         );
     }
