@@ -32,7 +32,7 @@ App should be running on **localhost:3000** (or check the console for address)
 
 
 ####Game Page Ux
-![Game Page](/public/boggle_page.png)
+![Game Page](/public/boggle_game_page.png)
 
 
 ###Game Rules
