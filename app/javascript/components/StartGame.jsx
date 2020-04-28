@@ -59,6 +59,7 @@ class StartGame extends React.Component {
 
     startGame = () => {
         this.setState({gameStarted : true, doAfterTimeoutDone:true});
+        this.resetMatrix();
         this.initTimer();
     };
 
