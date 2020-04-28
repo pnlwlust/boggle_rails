@@ -20,7 +20,7 @@ export default () => (
                                     where "adjacent" cubes are those horizontally, vertically, and diagonally neighboring.
                                     Words must be at least three letters long, may include singular and plural (or other derived forms) separately,
                                     but may not use the same letter cube more than once per word. Enter each word and click on validate.
-                                    After three minutes have elapsed, timer will stop and you will get you final result.
+                                    After three minutes have elapsed, timer will stop and you will get your final result.
                                 </small>
                             </Col>
                             <Col>

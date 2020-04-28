@@ -56,7 +56,7 @@ class BoggleService
 
   def validateWord(word)
     bg = Boggle::Boggle.getInstance
-    if validateAgainstDictionary(word) && validateAgainstNeighbourhoodLetters(word)
+    if validateAgainstNeighbourhoodLetters(word) && validateAgainstDictionary(word)
       puts "Keeping Score"
       puts bg.keepScore(word) #keep score if validated
       return true

@@ -29,10 +29,11 @@ class StartGame extends React.Component {
         this.oldState = this.state;
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.guessInputRef = React.createRef();
     }
 
     componentDidMount() {
-        this.fetchMatrixData()
+        this.fetchMatrixData();
     }
 
     fetchMatrixData(){
@@ -105,6 +106,7 @@ class StartGame extends React.Component {
         oldWords.push(guessWord);
 
         this.setState({guessWordList:oldWords, guessWord:'', submitted:true});
+        this.guessInputRef.current.focus();
 /*
         const url = config.baseApi + "/boggle/saveWord";
         const body = {
@@ -129,7 +131,7 @@ class StartGame extends React.Component {
         const baseApi = config.baseApi;
         const url = baseApi + "/boggle/getScore";
         let self = this;
-        this.callApi(url, "POST", {'words':this.state.guessWordList})
+        this.callApi(url, "POST", {'words':[...new Set(this.state.guessWordList)]})
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -208,6 +210,8 @@ class StartGame extends React.Component {
                                         onChange={this.onChange}
                                         value={this.state.guessWord}
                                         autoFocus
+                                        ref={this.guessInputRef}
+                                        onKeyPress={event => {if (event.key === "Enter") {this.onSubmit(event);}}}
                                     />
                                     <small id="guessWordHelp" className="form-text text-muted">
                                         Enter single word at a time

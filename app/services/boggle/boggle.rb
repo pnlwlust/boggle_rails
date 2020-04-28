@@ -56,7 +56,7 @@ module Boggle
     def addNeighbouringElements(currentElement, neighbouringElements)
       oldSet = @neighboursHash[currentElement]
       if oldSet
-        oldSet.merge(neighbouringElements)
+        oldSet.push(*neighbouringElements)
       else
         oldSet = neighbouringElements
       end
@@ -70,11 +70,11 @@ module Boggle
       columnIndexMin = (columnIndex - 1) < 0 ? columnIndex : (columnIndex - 1)
       rowIndexMax = (rowIndex + 1) < totalLength ? (rowIndex + 1) : rowIndex
       rowIndexMin = (rowIndex - 1) < 0 ? rowIndex : (rowIndex - 1)
-      neighbourArray = Set.new
+      neighbourArray = Array.new
       # puts "[%d %d] - [%d %d]" % [rowIndexMin, columnIndexMin, rowIndexMax, columnIndexMax]
       (columnIndexMin..columnIndexMax).each do |i|
         (rowIndexMin..rowIndexMax).each do |j|
-          neighbourArray.add(totalElements[j][i])
+          neighbourArray.push(totalElements[j][i])
         end
       end
       neighbourArray
