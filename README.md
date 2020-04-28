@@ -1,24 +1,55 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## System dependencies
 
-Things you may want to cover:
+* Ruby
+* Rails 
+* Nodejs  and npm
+*yarn
 
-* Ruby version
+## Configuration
 
-* System dependencies
+### Running app
 
-* Configuration
+#####Install all dependencies
+Clone the project
+`git clone  https://github.com/pnlwlust/boggle_rails.git`
 
-* Database creation
+Go to the root directory
+`cd boggle_rails`
 
-* Database initialization
+Install the dependencies 
 
-* How to run the test suite
+```
+bundle install (Installs dependencies from Gem file)
 
-* Services (job queues, cache servers, search engines, etc.)
+yarn install (Installs dependencies from package.json)
 
-* Deployment instructions
+rails server
+```
 
-* ...
+App should be running on **localhost:3000** (or check the console for address)
+
+
+####Game Page Ux
+![Game Page](/public/boggle_page.png)
+
+
+###Game Rules
+
+*Search for words that can be constructed from the letters of sequentially adjacent cubes,
+where "adjacent" cubes are those horizontally, vertically, and diagonally neighboring.
+Words must be at least three letters long, may include singular and plural (or other derived forms) separately,
+but may not use the same letter cube more than once per word. Enter each word and click on validate.
+After three minutes have elapsed, timer will stop and you will get you final result.*
+
+**Score**
+
+Length | Score
+------- | -------
+<3      |  0
+3,4      | 1
+5        | 2
+6         | 3
+7         | 5
+8+        | 11
