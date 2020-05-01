@@ -218,7 +218,7 @@ class StartGame extends React.Component {
                                     </small>
                                 </div>
                                 <Button type="submit" variant="outline-warning" disabled={!this.state.gameStarted} block>
-                                    {(!this.state.finalScoreReturned && this.state.callingFinalScore)?'Loading ...':'Validate'}
+                                    {(!this.state.finalScoreReturned && this.state.callingFinalScore)?'Loading ...':'Submit'}
                                 </Button>
                             </Form>
                             </Col>
