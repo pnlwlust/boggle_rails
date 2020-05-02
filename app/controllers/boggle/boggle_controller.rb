@@ -1,4 +1,4 @@
-class BoggleController < ApplicationController
+class Boggle::BoggleController < ApplicationController
 
   def index
 
@@ -9,7 +9,7 @@ class BoggleController < ApplicationController
 
   def getMatrix
 
-    boggleService = BoggleService.new()
+    boggleService = Boggle::BoggleService.new()
 
     matrix = boggleService.startGame
     render json: matrix
@@ -18,7 +18,7 @@ class BoggleController < ApplicationController
   def saveWord # Call if you need to validate on each word input
     params = request.body.read
     json = JSON.parse(params)
-    boggleService = BoggleService.new
+    boggleService = Boggle::BoggleService.new
 
     result = boggleService.saveWord(json['word'])
     render json: { validated: result }
@@ -29,7 +29,7 @@ class BoggleController < ApplicationController
     params = request.body.read
     json = JSON.parse(params)
 
-    boggleService = BoggleService.new
+    boggleService = Boggle::BoggleService.new
     boggleService.saveWords(json)
     result = boggleService.getFinalResult
     puts "##################################Final Score is##############################"

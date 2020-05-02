@@ -1,33 +1,34 @@
 require 'rails_helper'
 
-describe BoggleService do
+describe Boggle::BoggleService do
   before(:all) do
-    @boogleService = BoggleService.new
+    @boogleService = Boggle::BoggleService.new
   end
   context 'When Testing the BoggleService class' do
 
     it 'Start method should return 26' do
 
       response = @boogleService.startGame()
-      expect(response).to eq 26
+      length = response.length
+      expect(length).to eq 4
     end
 
     it 'should return a random character when called getLetter method' do
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       response = bg.getRandomLetter
       expect(response).to match /^[A-Z]$/
     end
 
     it 'should return array' do
 
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       response = bg.create4By4Matrix
       expect(response).to be_instance_of Array
     end
 
     it 'should return 4 as length of the array' do
 
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       response = bg.create4By4Matrix
       expect(response.length).to eq 4
     end
@@ -46,7 +47,7 @@ describe BoggleService do
     end
     it 'should return map with set of all neighbouring letters' do
 
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       response = bg.createNeighbouringMap(@column)
       pp response
       expect(response).to be_instance_of Hash
@@ -56,7 +57,7 @@ describe BoggleService do
 
     it 'should contain all elements in a matrix as keys' do
 
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       response = bg.createNeighbouringMap(@column)
       expect(response).to have_key('U')
       expect(response).to have_key('C')
@@ -76,7 +77,7 @@ describe BoggleService do
 
     it 'should contain given letters in the created set' do
 
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       response = bg.createNeighbouringMap(@column)
       setForU = response['U']
       testSet = ['c', 'L', 'W']
@@ -94,13 +95,13 @@ describe BoggleService do
           ['R', 'M', 'D', 'G'],
           ['L', 'Y', 'R', 'O']
       ]
-      @boogleService = BoggleService.new
+      @boogleService = Boggle::BoggleService.new
       # @boogleService.setNeighbourhoodHash = boggleMatrix
       @boogleService.createNeighbouringMap(boggleMatrix)
     end
     it "should return true if the word is constructed from neighbouring letters" do
       testList = ["LUCK", "KUST", "UCKU", "DOGS", "gody", "ULKSDORMLRLU"]
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       testList.each { |x|
         response = bg.validateAgainstNeighbourhoodLetters(x)
         puts response
@@ -109,7 +110,7 @@ describe BoggleService do
     end
     it "should return false if the word is not constructed from neighbouring letters" do
       testList = ["Hello", "JUST", "First"]
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       testList.each { |x|
         response = bg.validateWord(x)
         puts response
@@ -118,7 +119,7 @@ describe BoggleService do
     end
     it "should return true if the word is validate agianst dictionary as well as neighbourhood letters" do
       testList = ["DOGS", "LUCK", "DORM"]
-      bg = BoggleService.new
+      bg = Boggle::BoggleService.new
       testList.each { |x|
         response = bg.validateWord(x)
         puts response

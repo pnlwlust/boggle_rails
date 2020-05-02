@@ -5,7 +5,7 @@
 * Ruby
 * Rails 
 * Nodejs  and npm
-*yarn
+* yarn
 
 ## Configuration
 

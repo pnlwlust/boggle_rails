@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BoggleService
+class Boggle::BoggleService
 
   def startGame
     p 'Boggle Game Starting'
